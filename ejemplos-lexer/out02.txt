@@ -1,0 +1,8 @@
+<token_string,esto es un string,3,1>
+<token_string,palabra,5,1>
+<token_string,#,7,1>
+<token_string,;,9,1>
+<token_string,estos valores se toman como string %^**\##,10,1>
+<token_integer,4000,12,1>
+<token_double,40.0003,13,1>
+<token_double,0.001,14,1>
