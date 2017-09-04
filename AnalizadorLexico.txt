@@ -32,6 +32,7 @@ ne token_diff_str
 ** token_pot
 
 Palabras reservadas (fuente: https://www.xilinx.com/itp/xilinx10/isehelp/ite_r_tcl_reserved_words.htm):
+
 while
 for
 foreach

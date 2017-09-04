@@ -1,0 +1,14 @@
+#in07
+
+set variable1 234;
+set variable2 "valorString";
+
+#comentario
+puts "hola mundo";
+set variable3 $variable2 ;
+
+puts $variable3;
+
+set variable4 [expr {2 * 3 + 1} ];
+set arreglo(0) 23.4;
+set arreglo(1) 0.000001;

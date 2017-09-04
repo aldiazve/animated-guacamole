@@ -1,0 +1,7 @@
+#in05
+
+8999 identificador
+
+89999identificador2
+
+.2222 #error

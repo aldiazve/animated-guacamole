@@ -1,0 +1,23 @@
+#in00
+
+set
+            puts
+
+    if
+
+then
+
+else
+
+switch
+    for
+
+                            default default
+                    while expr
+
+array
+
+exists
+
+
+
