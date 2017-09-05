@@ -13,7 +13,6 @@ public class Lexer {
     COMMENT,
     SPECIAL_CHARACTER,
     LEXICALE_ERROR,
-    RESERVED_WORDS
   };
   // Lista de los posibles tokens a imprimir
   enum PrinterType {
@@ -82,7 +81,7 @@ public class Lexer {
 
   // Determina el siguiente estado.
   // Recibe el siguiente caracter y el estado actual.
-  public static State next(char c, State currentState) {
+  public static State nextState(char c, State currentState) {
     switch (currentState) {
 	    case INITIAL:
 	    case LINE_BREACK:
@@ -209,7 +208,7 @@ public class Lexer {
       }
       char character = (char) i;
       lexeme += character;
-      nextState = next(character, currentState);
+      nextState = nextState(character, currentState);
       // Revisa cuál es el siguiente estado y toma la acción correspondiente.
 
       if (nextState == State.WHITESPACE || nextState == State.LINE_BREACK) {
