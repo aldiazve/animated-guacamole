@@ -1,5 +1,4 @@
 #in00
-
 set
             puts
 
@@ -9,10 +8,10 @@ then
 
 else
 
-switch
+switch if else(      (  )  then
     for
 
-                            default default
+                            default 
                     while expr
 
 array

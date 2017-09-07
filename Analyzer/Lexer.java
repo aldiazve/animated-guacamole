@@ -78,6 +78,9 @@ public class Lexer {
   	reservedWords.put("proc", "proc");
   	reservedWords.put("return", "return");
   }
+  // Esto debe ser global para que la función de error pueda acceder a las posiciones desde dónde necesite ser llamada.
+ 	private static int column = 1;
+ 	private static int line = 1;
 
   // Determina el siguiente estado.
   // Recibe el siguiente caracter y el estado actual.
@@ -106,6 +109,7 @@ public class Lexer {
         if (c == '#') {
         	return State.COMMENT;
         }
+        // Si lee algo que no conoce, asume que es un caracter especial.
        	return State.SPECIAL_CHARACTER;
       // Cuando vuelve a ver las " finaliza el string.
     	case STRING:
@@ -135,7 +139,10 @@ public class Lexer {
       	} else if (c == '\r' || c == '\t'|| c == ' '){
       		return State.WHITESPACE;
       	}
-      	return State.COMMENT;
+      	return State.SPECIAL_CHARACTER;  	
+      case LEXICALE_ERROR:
+    		lexicaleError();
+    		return null;
    		default:
         System.err.println("State desconocido...");
         System.exit(1);
@@ -143,36 +150,43 @@ public class Lexer {
     }
   }
 
-  public static void printer( int line, int column, PrinterType type, String token){	
-  	column = column - token.length();
+  public static void printer( int line, PrinterType type, String token){
+
+  	int startIndex = column - token.length(); 
+  	// Si column es igual a 0, es porque la palabra inicia con la línea, es decir column 1.
+  	if (startIndex == 0){
+  		startIndex = 1;
+  	}
 		switch (type) {
 			case STRING:
-				System.out.println('<' + "token_string, " + token + ", " + line + ", " + column + ">");
+				System.out.println('<' + "token_string, " + token + ", " + line + ", " + startIndex + ">");
 			break;	
 			case SPECIAL_CHARACTER:
-				System.out.println('<' + specialCaracters.get(token) + ", " + line + ", " + column + ">");
+
+				System.out.println('<' + specialCaracters.get(token) + ", " + line + ", " + startIndex + ">");
   		break;
   		case INTEGER:
-  			System.out.println('<' + "token_integer, " + token + ", " + line + ", " + column + ">");
+  			System.out.println('<' + "token_integer, " + token + ", " + line + ", " + startIndex + ">");
   		break;
   		case DOUBLE:
-  			System.out.println('<' + "token_double, " + token + ", " + line + ", " + column + ">");
+  			System.out.println('<' + "token_double, " + token + ", " + line + ", " + startIndex + ">");
   		break;
   		case IDENTIFIER:
   		  
 
-  			System.out.println('<' + "id, " + token + ", " + line + ", " + column + ">");
+  			System.out.println('<' + "id, " + token + ", " + line + ", " + startIndex + ">");
   		break;
   		case RESERVED_WORDS:
   			
-  			System.out.println('<' + token + ", " + line + ", " + column + ">");
+  			System.out.println('<' + token + ", " + line + ", " + startIndex + ">");
   		break;
 		}
-  	
+  	column--;
   }
 
-  public static void lexicaleError( int line, int column){
-  	System.out.println(">>> Error lexico linea: " + line + ", posicion: " + column +")");
+  public static void lexicaleError(){
+  	System.out.println(">>> Error lexico linea: " + line + ", posicion: " + (column-1) +")");
+  		System.exit(-1);
   }
 
     // Recibe la ubicación del archivo de prueva y retorna un InputStream del mismo
@@ -192,9 +206,8 @@ public class Lexer {
 		initReservedWordsMap();
     State currentState = State.INITIAL, nextState;
     String lexeme = "";
-    int line = 1, column = 1;
     // Inicializamos el inputStream con uno de los archivos de entrada.
-    PushbackInputStream in = new PushbackInputStream(fileToInputStream("examples/in00.txt"));
+    PushbackInputStream in = new PushbackInputStream(fileToInputStream("examples/in01.txt"));
     Boolean isFinish = false;
 
 
@@ -210,25 +223,25 @@ public class Lexer {
       lexeme += character;
       nextState = nextState(character, currentState);
       // Revisa cuál es el siguiente estado y toma la acción correspondiente.
-
+      //System.out.println(column + " " + character + " " + currentState);
       if (nextState == State.WHITESPACE || nextState == State.LINE_BREACK) {
         switch (currentState) {
           case INITIAL:
             break;
           case STRING:
-          		printer(line, column, PrinterType.STRING, removeLastChar(lexeme));
+          		printer(line, PrinterType.STRING, removeLastChar(lexeme));
               break;
           case IDENTIFIER:
           	//Eliminia el último caracter.
           	lexeme = removeLastChar(lexeme);
           	//Verifica si la palabra es reservada.
           	if (reservedWords.get(lexeme) != null){
-          		printer(line, column, PrinterType.RESERVED_WORDS, lexeme);
+          		printer(line, PrinterType.RESERVED_WORDS, lexeme);
           	//Verifica si es uno de los dos caracteres especiales que solo tienen letras.
           	} else if (specialCaracters.get(lexeme) != null){
-          		printer(line, column, PrinterType.SPECIAL_CHARACTER, lexeme);
+          		printer(line, PrinterType.SPECIAL_CHARACTER, lexeme);
           	} else {
-          		printer(line, column, PrinterType.IDENTIFIER, lexeme);
+          		printer(line, PrinterType.IDENTIFIER, lexeme);
           	}
             in.unread((int) character);
             break;
@@ -236,8 +249,9 @@ public class Lexer {
             	//Eliminia el último caracter.
           		lexeme = removeLastChar(lexeme);
           		if (specialCaracters.get(lexeme) != null){
-          			printer(line, column, PrinterType.SPECIAL_CHARACTER, lexeme);
+          			printer(line, PrinterType.SPECIAL_CHARACTER, lexeme);
           		}
+          	in.unread((int) character);
             break;
         }
         // Verifica si viene un salto de línea, de ser así aumenta el contador "column" y deja en 0 el contador "linea"

@@ -10,6 +10,12 @@
 - [x] Definida la función que imprime error léxico (no implementada aún).
 - [x] Definida el implementada la función que imprime en el formato requerido las cadenas.
 
+###### Errores conocidos
+
+Si el archivo tiene una sola línea, el contador de columna falla.
+Si el lexer encuentra un error lexicografico, no imprime el identificador inmediatamente anterior :'(.
+No se reconocen caracteres especiales que estén pegados, RJ: ***, !=== y así.
+
 Última actualización 5/09/2017
 
 ### Definición de los estados del autómata:
