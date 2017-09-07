@@ -1,4 +1,4 @@
-OBJ     = Token.class Main.class
+OBJ     = Token.class Lexer.class Main.class
 
 
 %.class: %.java

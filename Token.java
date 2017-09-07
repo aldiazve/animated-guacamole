@@ -4,6 +4,10 @@ import java.util.Map;
 
 public class Token {
 
+    public enum Type {
+        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR
+    };
+    Type type;
     int line;
     int column;
     String lexeme;
@@ -39,11 +43,6 @@ public class Token {
         operators.put("eq", "token_igual_str");
 
     }
-
-    public enum Type {
-        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR
-    };
-    Type type;
 
     public Token(Type type, String lexeme, int line, int column) {
         this.type = type;
