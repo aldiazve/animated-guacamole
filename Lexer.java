@@ -105,7 +105,7 @@ public class Lexer {
                 if (Token.operators.get(Character.toString(c)) != null) {
                     return State.SINGLE_TOKEN_END;
                 }
-                if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z') {
+                if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c == '_') {
                     return State.IDENTIFIER;
                 }
                 if (c == ' ' || c == '\t' || c == '\r') {
@@ -158,7 +158,7 @@ public class Lexer {
                 }
                 return State.STRING;
             case IDENTIFIER:
-                if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9') {
+                if (c >= 'a' && c <= 'z' || c >= 'A' && c <= 'Z' || c >= '0' && c <= '9' || c == '_') {
                     return State.IDENTIFIER;
                 }
                 return State.IDENTIFIER_END;
