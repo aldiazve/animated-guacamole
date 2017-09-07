@@ -123,12 +123,12 @@ public class Main {
         int line = 1, col = 1;
         int startLine = line, startCol = col;
         PushbackInputStream in = new PushbackInputStream(System.in);
-        Boolean completo = false;
-        while (!completo) {
+        Boolean done = false;
+        while (!done) {
             int i = in.read();
             col++;
             if (i == -1) {
-                completo = true;
+                done = true;
                 i = (int) '\n';
             }
 
@@ -141,7 +141,8 @@ public class Main {
 
                 if (ignorelast.contains(new_state)) {
                     in.unread((int) caracter);
-                    lexeme = lexeme.substring(0, lexeme.length() - 1);
+		    col--;
+		    lexeme = lexeme.substring(0, lexeme.length() - 1);
                 }
 
                 switch (new_state) {
