@@ -54,6 +54,7 @@ public class Token {
     @Override
     public String toString() {
         String t = "";
+        String l = lexeme;
         switch (type) {
             case STRING:
                 t = "token_string";
@@ -69,6 +70,7 @@ public class Token {
                 break;
             case OPERATOR:
                 t = operators.get(lexeme);
+                l = "";
                 break;
             default:
                 break;
@@ -76,6 +78,9 @@ public class Token {
         if (!t.equals("")) {
             t += ",";
         }
-        return "<" + t + lexeme + "," + line + "," + column + ">";
+        if (!l.equals("")) {
+            l += ",";
+        }
+        return "<" + t + l + line + "," + column + ">";
     }
 }
