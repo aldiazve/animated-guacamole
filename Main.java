@@ -91,12 +91,16 @@ public class Main {
         ignorelast.add(State.DOUBLE_END);
         keywords.add("for");
 	keywords.add("foreach");
+	keywords.add("while");
+	keywords.add("expr");
 	keywords.add("if");
 	keywords.add("then");
 	keywords.add("list");
 	keywords.add("array");
 	keywords.add("elseif");
 	keywords.add("else");
+	keywords.add("switch");
+	keywords.add("default");
 	keywords.add("break");
 	keywords.add("continue");
 	keywords.add("return");
@@ -106,6 +110,7 @@ public class Main {
 	keywords.add("read");
 	keywords.add("incr");
 	keywords.add("global");
+	keywords.add("exists");
         accept.add(State.STRING_END);
         accept.add(State.COMMENT_END);
         accept.add(State.LINE_BREAK);
@@ -115,7 +120,7 @@ public class Main {
         accept.add(State.DOUBLE_END);
         State current = State.INITIAL;
         String lexeme = "";
-        int line = 1, col = 0;
+        int line = 1, col = 1;
         int startLine = line, startCol = col;
         PushbackInputStream in = new PushbackInputStream(System.in);
         Boolean completo = false;
@@ -151,10 +156,10 @@ public class Main {
                         break;
                     case STRING_END:
                         tokens.add(new Token(Token.Type.STRING, lexeme.substring(1, lexeme.length() - 1), startLine, startCol));
-                        break;//TODO
+                        break;
                     case LINE_BREAK:
                         line++;
-                        col = 0;
+                        col = 1;
                         break;
                     case IGNORE:
                         break;
