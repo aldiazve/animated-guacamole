@@ -1,12 +1,47 @@
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Token {
 
     int line;
     int column;
     String lexeme;
 
+    public static final Map<String, String> operators = new HashMap<>();
+
+    static {
+
+        operators.put("{", "token_llave_izq");
+        operators.put("}", "token_llave_der");
+        operators.put("$", "token_dollar");
+        operators.put(";", "token_pyc");
+        operators.put("[", "token_cor_izq");
+        operators.put("]", "token_cor_der");
+        operators.put("(", "token_par_izq");
+        operators.put(")", "token_par_der");
+        operators.put("+", "token_mas");
+        operators.put("-", "token_menos");
+        operators.put("/", "token_div");
+        operators.put("%", "token_mod");
+        operators.put("<", "token_menor");
+        operators.put("<=", "token_menor_igual");
+        operators.put(">=", "token_mayor_igual");
+        operators.put(">", "token_mayor");
+        operators.put("!", "token_not");
+        operators.put("!=", "token_diff_num");
+        operators.put("*", "token_mul");
+        operators.put("**", "token_pot");
+        operators.put("&&", "token_and");
+        operators.put("||", "token_or");
+        operators.put("==", "token_igual_num");
+        operators.put("ne", "token_diff_str");
+        operators.put("eq", "token_igual_str");
+
+    }
+
     public enum Type {
-        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE
+        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR
     };
     Type type;
 
@@ -32,6 +67,9 @@ public class Token {
                 break;
             case IDENTIFIER:
                 t = "id";
+                break;
+            case OPERATOR:
+                t = operators.get(lexeme);
                 break;
             default:
                 break;
