@@ -201,7 +201,7 @@ public class Lexer {
                 for (Token t : tokens) {
                     System.out.println(t);
                 }
-                System.out.println(">>> Error lexico linea: " + line + ", posicion: " + (col==1?col:--col) + ")");
+                System.out.println(">>> Error lexico linea: " + line + ", posicion: " + (col==1 || current == State.INITIAL?col:--col) + ")");
                 return tokens;
             }
 
