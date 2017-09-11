@@ -20,7 +20,7 @@ static class Lexer {
         LESS, LESS_EQUAL, LESS_END,
         NOT, NOT_EQUAL, NOT_END,
         STAR, DOUBLE_STAR, STAR_END,
-        AND, AND_END, OR, OR_END, EQUALS, EQUALS_END
+        AND, AND_END, OR, OR_END, EQUALS, EQUALS_END, STRING_ERROR, INT_FAIL
     };
 
     static final Set<State> accept = new HashSet<>();
@@ -145,6 +145,9 @@ static class Lexer {
                 }
                 return State.INTEGER_END;
             case DOUBLE_BEGIN:
+                if (!(c >= '0' && c <= '9')) {
+                    return State.INT_FAIL;
+                }
             case DOUBLE:
                 if (c >= '0' && c <= '9') {
                     return State.DOUBLE;
@@ -162,6 +165,9 @@ static class Lexer {
             case STRING:
                 if (c == '"') {
                     return State.STRING_END;
+                }
+                if (c == '\n') {
+                    return State.STRING_ERROR;
                 }
                 return State.STRING;
             case IDENTIFIER:
@@ -203,10 +209,19 @@ static class Lexer {
             lexeme += caracter;
             State new_state = nextState(caracter, current);
             //System.out.println(new_state);
+            if(new_state == State.INT_FAIL){
+                lexeme = lexeme.substring(0, lexeme.length()-2);
+                tokens.add(new Token(Token.Type.INTEGER, lexeme, startLine, startCol));
+                new_state = State.LEXICAL_ERROR;
+            }
 
-            if (new_state == State.LEXICAL_ERROR) {
+            if (new_state == State.LEXICAL_ERROR || new_state == State.STRING_ERROR) {
                 for (Token t : tokens) {
                     System.out.println(t);
+                }
+                if(new_state == State.STRING_ERROR){
+                    col = startCol+1;
+                    line = startLine;
                 }
                 System.out.println(">>> Error lexico (linea: " + line + ", posicion: " + (col==1 || current == State.INITIAL?col:--col) + ")");
                 return tokens;
