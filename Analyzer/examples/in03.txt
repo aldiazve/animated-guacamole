@@ -1,8 +1,0 @@
-#in03
-
-set $variable [ expr {2 < 3{ ];
-
-if}0.555{ {
-    #cuerpo
-
-}

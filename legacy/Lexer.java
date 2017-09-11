@@ -150,7 +150,7 @@ public class Lexer {
     }
   }
 
-  public static void printer( int line, PrinterType type, String token){
+  public static void printer( PrinterType type, String token){
 
   	int startIndex = column - token.length(); 
   	// Si column es igual a 0, es porque la palabra inicia con la línea, es decir column 1.
@@ -229,7 +229,7 @@ public class Lexer {
           case INITIAL:
             break;
           case STRING:
-          		printer(line, PrinterType.STRING, removeLastChar(lexeme));
+          		printer(PrinterType.STRING, removeLastChar(lexeme));
               break;
           case IDENTIFIER:
           	//Eliminia el último caracter.
@@ -267,3 +267,8 @@ public class Lexer {
 
 	}
 }
+/*
+
+public class Token {
+	public static int num = 0;
+}*/

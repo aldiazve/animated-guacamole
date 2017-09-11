@@ -1,8 +1,0 @@
-#in04
-
-
-identificador_valido
-
-_identificador_valido_2
-
-&identificadorInvalido
