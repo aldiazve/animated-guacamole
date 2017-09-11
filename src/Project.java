@@ -37,7 +37,10 @@ static class Lexer {
         ignorelast.add(State.NOT_END);
         ignorelast.add(State.STAR_END);
         keywords.add("for");
+        keywords.add("size");
         keywords.add("foreach");
+        keywords.add("stdin");
+        keywords.add("gets");
         keywords.add("while");
         keywords.add("expr");
         keywords.add("if");
