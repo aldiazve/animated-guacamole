@@ -1,4 +1,4 @@
-OBJ     = Token.class Lexer.class Main.class
+OBJ     = Project.class
 
 
 %.class: %.java
@@ -7,7 +7,7 @@ OBJ     = Token.class Lexer.class Main.class
 build: $(OBJ)
 
 run: $(OBJ)
-	java Main
+	java Project
 
 tests: $(OBJ)
 # TODO
