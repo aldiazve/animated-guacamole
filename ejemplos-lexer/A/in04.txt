@@ -1,0 +1,8 @@
+The first argument
+to a set command can
+be either a single word like fruit or pi
+or it can be a member of an array Arrays will be discussed
+in greater detail later for the time being just remember that many data can be collected under a single variable name
+and an individual
+datum can be accessed by its index within that array
+Indexing into an array in Tcl is handled by putting the index within parentheses after the name of the variable

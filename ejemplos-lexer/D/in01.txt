@@ -1,0 +1,21 @@
+#tomado de http://wiki.tcl.tk/11833
+
+puts "Hey dude, how old might you be?"
+gets stdin Age
+if {$Age >= 0 && $Age <= 12} {
+    puts "You are a child."
+} elseif {$Age >= 13 && $Age <= 19} {
+    puts "You are a teen."
+} elseif {$Age > 19}  {
+    puts "You are an adult now."
+}
+
+puts "Hey dude, how old might you be?"
+gets stdin Age
+if {$Age <= 12} {
+    puts "You are a child."
+} elseif { $Age <=19 } {
+    puts "You are a teen."
+} else {
+    puts "You are an adult now."
+}

@@ -1,0 +1,12 @@
+!-==78979.344
+
++-+-==+!"sadfasdfsdf";
+
+;;;;;;
+
+#comentario
+
+
+|| != ==
+
+puts 70 || 32434 - _identificador++++++++++++3;

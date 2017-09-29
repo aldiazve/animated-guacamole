@@ -1,0 +1,10 @@
+if && wthen }
+    puts "fsdfs";
+    array set a b c d e;
+    set a 1000;
+    set b 3000;
+    set c [9 + 33434.34343*$f];
+    ;;;;;;;
+    #dsfasdfasdf
+    &and
+{

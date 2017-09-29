@@ -1,0 +1,4 @@
+<set,1,1>
+<id,a,1,5>
+<token_dollar,1,6>
+>>> Error lexico (linea: 1, posicion: 8)

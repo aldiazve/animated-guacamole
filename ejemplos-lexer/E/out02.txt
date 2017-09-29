@@ -1,0 +1,3 @@
+<puts,1,1>
+<token_string, ,1,6>
+>>> Error lexico (linea: 1, posicion: 10)

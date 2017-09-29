@@ -1,0 +1,16 @@
+#tomado de http://wiki.tcl.tk/11833
+set age 42
+puts $age
+
+set Age 42
+puts $Age
+
+set AGE 42
+puts $AGE
+
+set "my age" 42
+puts ${my age}
+
+set "My AGE" 42
+puts ${My AGE}
+puts [set "My AGE"]

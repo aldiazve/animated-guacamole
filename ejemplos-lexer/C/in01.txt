@@ -1,0 +1,16 @@
+for and set if then else elseif
+
+                "dsfsadjfalsfdj"; #set a [sajdfuasf];
+
+                        for{set i 0}{ $i < 10} {incr i}{
+                               puts "$i";
+                           }
+
+                            forrrrr
+
+                            whileeeee
+
+                            whIle
+
+                            #asdfas
+                                                                            !===

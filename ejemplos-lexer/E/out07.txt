@@ -1,0 +1,7 @@
+<id,print,1,1>
+<token_string,Ultimo caso,1,7>
+<id,_hola,2,1>
+<set,2,7>
+<token_integer,10,2,11>
+<token_diff_num,4,1>
+>>> Error lexico (linea: 4, posicion: 3)

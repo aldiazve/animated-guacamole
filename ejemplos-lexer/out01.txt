@@ -1,0 +1,21 @@
+<token_llave_der,3,1>
+<token_llave_izq,3,3>
+<token_par_izq,3,21>
+<token_par_der,3,23>
+<token_dollar,4,9>
+<token_pyc,5,9>
+<token_diff_str,7,3>
+<token_igual_str,9,3>
+<token_mul,11,3>
+<token_pot,11,5>
+<token_pot,12,3>
+<token_mul,12,5>
+<token_igual_num,13,3>
+<token_diff_num,14,3>
+<token_diff_num,15,3>
+<token_igual_num,15,5>
+<token_igual_num,16,3>
+<token_not,16,5>
+<token_not,17,3>
+<token_diff_num,18,3>
+>>> Error lexico (linea: 18, posicion: 5)
