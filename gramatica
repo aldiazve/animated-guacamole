@@ -26,7 +26,7 @@ ELSE -> kw_else { INSTRUCCIONES }
 INSTRUCCION -> kw_while { EXPRESSION } { INSTRUCCIONES }
 INSTRUCCION -> kw_gets kw_stdin ;
 INSTRUCCION -> kw_puts EXPRESSION ;
-INSTRUCCION -> EXPRESSION ;
+INSTRUCCION -> kw_expr { EXPRESSION } ;
 INSTRUCCION -> kw_for { kw_set id INIT_FOR } { EXPRESSION } { kw_incr id ( token_integer ) } { INSTRUCCIONES }
 INSTRUCCION -> kw_set id OPT_ARRAY_ACCESS EXPRESSION ;
 INSTRUCCION -> kw_switch token_dollar id { CASES DEFAULT }
@@ -46,13 +46,29 @@ INIT_FOR -> EXPRESSION
 OPT_ARRAY_ACCESS -> ( EXPRESSION )
 OPT_ARRAY_ACCESS -> epsilon
 
+EXPRESSION -> F BINARIO_EXPRESSION_OPT
+F -> UNARIO G
+F -> G
+G -> T
+T -> ( T )
 
-EXPRESSION -> id
-EXPRESSION -> token_dollar id
-EXPRESSION -> token_string
-EXPRESSION -> FCALL
-EXPRESSION -> token_integer
-EXPRESSION -> token_double
+BINARIO_EXPRESSION_OPT -> epsilon
+BINARIO_EXPRESSION_OPT -> BINARIO EXPRESSION
+
+BINARIO -> token_mas
+BINARIO -> token_menos
+BINARIO -> token_mul
+BINARIO -> token_div
+UNARIO -> token_menos
+
+
+T -> id
+T -> token_dollar id
+T -> token_string
+T -> FCALL
+T -> token_integer
+T -> token_double
+
 FCALL -> [ id PARAMETROS ]
 
 PARAMETROS -> epsilon
