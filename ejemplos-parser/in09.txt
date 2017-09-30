@@ -1,0 +1,45 @@
+#sub rutinas declaracion
+
+proc identificador { {argumento1} {argumento2} {argumento3}}{
+    puts $a;
+    return $a;
+}
+
+proc identificador { {argumento1} {argumento2} {argumento3}}{
+    puts $a;
+    return;
+}
+
+proc identificador { {argumento1} {argumento2} {argumento3}}{
+    puts $a;
+}
+
+proc identificador { {argumento1} {argumento2} {argumento3}}{
+    return;
+    return;
+    return;
+    return;
+    return;
+    return;
+    puts "asdsad";
+}
+
+proc identificador { }{
+    return;
+    return;
+    return;
+    return;
+    return;
+    return;
+    puts "asdsad";
+}
+
+proc identificador { {
+    return;
+    return;
+    return;
+    return;
+    return;
+    return;
+    puts "asdsad";
+}

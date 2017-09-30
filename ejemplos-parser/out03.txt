@@ -1,0 +1,1 @@
+<13,13> Error sintactico se encontro: 'expr'; se esperaba: '[', 'valor_double', 'valor_entero', 'valor_string'.

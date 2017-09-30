@@ -1,0 +1,54 @@
+#switch
+
+switch $variable{
+
+    case 1{
+
+    }
+    case 2{
+        puts 3;
+        puts 2;
+        gets stdin;
+        [sum];
+    }
+    case 999999{
+
+    }
+    default{
+
+    }
+}
+
+
+switch $variable{
+
+    case 1{
+
+    }
+    case 2{
+        puts 3;
+        puts 2;
+        gets stdin;
+        [sum];
+    }
+    case 999999{
+
+    }
+}
+
+
+switch $variable{
+
+    case "asdasd"{ #error solo se permiten valores enteros
+
+    }
+    case 2{
+        puts 3;
+        puts 2;
+        gets stdin;
+        [sum];
+    }
+    case 999999{
+
+    }
+}

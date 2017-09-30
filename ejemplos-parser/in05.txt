@@ -1,0 +1,27 @@
+#ifs
+
+if{3 <=5} then {
+
+}
+
+if{3 <=5} then {
+
+}
+elseif{2 ** "sdfsdf"} then{
+    puts "asdas";
+}
+elseif{1} then{}
+elseif{2} then{}
+elseif{3} then{}
+else{
+
+}
+
+if{"asdasd"} then {
+
+}
+else{
+
+}
+
+if{1} {}

@@ -1,0 +1,12 @@
+#while
+
+while{1}{
+    break;
+    continue;
+}
+
+while{$a < 2}{
+    set a [expr{$a + 1}];
+}
+
+while{}{} #error expresion vacia
