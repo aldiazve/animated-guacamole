@@ -1,0 +1,13 @@
+proc romain {{a}{b}{c}} {i1 i2 return;}
+proc romain {{a}{b}} {i1 i2}
+proc romain {} {}
+
+if{ro} then{ro} 
+if{a}then{a}elseif{a}then{a}
+if{a}then{a}elseif{a}then{a}elseif{b}then{b}
+if{a}then{a}elseif{a}then{a}elseif{b}then{b}else{a}
+
+while{a}{b}
+
+[romain {[romain]} {test2}]
+[romain]

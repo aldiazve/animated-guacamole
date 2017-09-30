@@ -1,0 +1,42 @@
+ROOT -> DECLARACIONES INSTRUCCIONES
+
+DECLARACIONES -> DECLARACION DECLARACIONES
+DECLARACIONES -> epsilon
+
+DECLARACION -> kw_proc id token_llave_izq PARAMETROS_DECL token_llave_der token_llave_izq INSTRUCCIONES RET token_llave_der
+
+PARAMETROS_DECL -> PARAMETRO_DECL PARAMETROS_DECL
+PARAMETROS_DECL -> epsilon
+
+PARAMETRO_DECL -> token_llave_izq id token_llave_der
+
+RET -> kw_return token_pyc
+RET -> epsilon
+
+INSTRUCCIONES -> INSTRUCCION INSTRUCCIONES
+INSTRUCCIONES -> epsilon
+
+INSTRUCCION -> kw_if IF ELSEIFS ELSE
+IF -> EXP_LLAVES kw_then EXP_LLAVES
+ELSEIFS -> epsilon
+ELSEIFS -> kw_elseif IF ELSEIFS
+ELSE -> epsilon
+ELSE -> kw_else EXP_LLAVES
+
+INSTRUCCION -> kw_while EXP_LLAVES token_llave_izq INSTRUCCIONES token_llave_der
+INSTRUCCION -> set id valor
+INSTRUCCION -> EXPRESSION
+INSTRUCCION -> kw_for EXP_LLAVES EXP_LLAVES EXP_LLAVES token_llave_izq INSTRUCCIONES token_llave_der
+	
+
+
+EXPRESSION -> id
+EXPRESSION -> FCALL
+FCALL -> token_cor_izq id PARAMETROS token_cor_der
+
+PARAMETROS -> epsilon
+PARAMETROS -> PARAMETRO PARAMETROS
+
+PARAMETRO -> EXP_LLAVES
+
+EXP_LLAVES -> token_llave_izq EXPRESSION token_llave_der

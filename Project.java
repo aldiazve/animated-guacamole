@@ -7,10 +7,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-public class Project {
 
 
-static class Lexer {
+
+class Lexer {
 
     enum State {
         INITIAL, LINE_BREAK, IDENTIFIER, IDENTIFIER_END, INTEGER, DOUBLE,
@@ -224,7 +224,7 @@ static class Lexer {
                     line = startLine;
                 }
                 System.out.println(">>> Error lexico (linea: " + line + ", posicion: " + (col==1 || current == State.INITIAL?col:--col) + ")");
-                return tokens;
+                System.exit(1);
             }
 
             if (accept.contains(new_state)) {
@@ -286,14 +286,15 @@ static class Lexer {
         for (Token t : tokens) {
             System.out.println(t);
         }
+        tokens.add(new Token(Token.Type.EOF, "", line, col));
         return tokens;
     }
 }
 
-static class Token {
+class Token {
 
     public enum Type {
-        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR
+        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR, EOF
     };
     Type type;
     int line;
@@ -339,6 +340,27 @@ static class Token {
         this.lexeme = lexeme;
     }
 
+    public String getType() {
+	switch (type) {
+    case STRING:
+        return "token_string";
+    case EOF:
+        return "$";
+	case INTEGER:
+	    return "token_integer";
+	case DOUBLE:
+	    return "token_double";
+	case IDENTIFIER:
+	    return "id";
+	case OPERATOR:
+	    return operators.get(lexeme);
+	case KEYWORD:
+	    return "kw_"+lexeme;
+	default:
+	    return "ERROR";
+        }
+    }
+
     @Override
     public String toString() {
         String t = "";
@@ -373,9 +395,14 @@ static class Token {
     }
 }
 
-    public static void main(String[] args) throws IOException {
-        Lexer l = new Lexer();
-        l.Tokenize(new PushbackInputStream(System.in));
 
+class Project{
+    public static void main(String[] args) throws IOException {
+	Lexer l = new Lexer();
+	List<Token> tokens = l.Tokenize(new PushbackInputStream(System.in));
+    System.out.println("\n\n\nSintactico:\n");
+	SyntacticAnalyzer sa = new SyntacticAnalyzer(tokens);
+	sa.analyze();
     }
 }
+
