@@ -46,7 +46,16 @@ def siguientes(simboloInicial, rules, non_terminals):
 					sig[Rd[i]] = sig[Rd[i]].union(sig[Rn])
 				if prev_len != len(sig[Rd[i]]):
 					cambios = True
-	return sig	
+	return sig
+
+replace = {"{":"token_llave_izq",
+	"}":"token_llave_der",
+	";":"token_pyc",
+	"[":"token_cor_izq",
+	"]":"token_cor_der",
+	"(":"token_par_izq",
+	")":"token_par_der"}
+
 if DEBUG:
         print(inp)
 rules = {}
@@ -57,6 +66,7 @@ for c in inp.splitlines():
 		continue
 	R, rule = map(lambda x: x.strip(), c.split("->"))
 	rule = map(lambda x: x.strip(), rule.split(" "))
+	rule = map(lambda x: replace[x] if x in replace else x, rule)
 	if simboloInicial is None:
 		simboloInicial = R
 	if R not in rules:

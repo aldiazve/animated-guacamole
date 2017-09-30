@@ -1,13 +1,25 @@
-proc romain {{a}{b}{c}} {i1 i2 return;}
-proc romain {{a}{b}} {i1 i2}
+proc romain {{a}{b}{c}} {i1; i2; return;}
+proc romain {{a}{b}} {i1; i2;}
 proc romain {} {}
 
-if{ro} then{ro} 
-if{a}then{a}elseif{a}then{a}
-if{a}then{a}elseif{a}then{a}elseif{b}then{b}
-if{a}then{a}elseif{a}then{a}elseif{b}then{b}else{a}
+if{ro} then{a;}
+if{a}then{a;}elseif{a}then{a;}
+if{a}then{a;}elseif{a}then{a;}elseif{b}then{b;}
+if{a}then{a;}elseif{a}then{a;}elseif{b}then{b;}else{a;}
 
-while{a}{b}
+while{a}{b;}
 
-[romain {[romain]} {test2}]
-[romain]
+[romain {[romain]} {test2}];
+[romain];
+
+gets stdin;
+puts a;
+
+set a b;
+set a(b) b;
+set a("s") "y";
+set a(0) 10.5;
+
+for {set a 1}{a}{incr a ( 1 )}{}
+for {set a $b}{a}{incr a ( 1 )}{}
+for {set a $b(1)}{a}{incr a ( 1 )}{}
