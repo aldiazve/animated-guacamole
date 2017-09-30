@@ -138,11 +138,13 @@ System.exit(1);
 
 void error_sintactico(String... values){
 
-System.out.print("err sintactico - expected:");
-for(String s:values){
-System.out.print(" "+s);
+System.out.print(tokens.get(0).getPosition()+" Error sintactico se encontro: '"+token()+"'; se esperaba: ");
+for(int i = 0; i<values.length;i++){
+if(i!=0)
+System.out.print(", ");
+System.out.print("'"+values[i]+"'");
 }
-System.out.println("");
+System.out.println(".");
 System.exit(1);
 }
 
@@ -154,7 +156,7 @@ if(tokens.size()>1)
 System.out.println("there are tokens left to process... fail.");
 System.exit(1);
 }
-System.out.println("Success :)");
+System.out.println("El analisis sintactico ha finalizado correctamente.");
 }
 
 """)

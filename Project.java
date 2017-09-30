@@ -393,6 +393,10 @@ class Token {
         }
         return "<" + t + l + line + "," + column + ">";
     }
+
+    public String getPosition(){
+        return "<" + line + "," + column + ">";
+    }
 }
 
 
