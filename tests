@@ -23,3 +23,16 @@ set a(0) 10.5;
 for {set a 1}{a}{incr a ( 1 )}{}
 for {set a $b}{a}{incr a ( 1 )}{}
 for {set a $b(1)}{a}{incr a ( 1 )}{}
+
+switch $a {
+
+}
+switch $a {
+case 1 {}
+case 2 {set a 1;}
+}
+switch $a {
+case 1 {}
+case 2 {set a 1;}
+default {}
+}

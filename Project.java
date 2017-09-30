@@ -51,6 +51,7 @@ class Lexer {
         keywords.add("else");
         keywords.add("switch");
         keywords.add("default");
+        keywords.add("case");
         keywords.add("break");
         keywords.add("continue");
         keywords.add("return");

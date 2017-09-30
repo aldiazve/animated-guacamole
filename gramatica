@@ -29,6 +29,15 @@ INSTRUCCION -> kw_puts EXPRESSION ;
 INSTRUCCION -> EXPRESSION ;
 INSTRUCCION -> kw_for { kw_set id INIT_FOR } { EXPRESSION } { kw_incr id ( token_integer ) } { INSTRUCCIONES }
 INSTRUCCION -> kw_set id OPT_ARRAY_ACCESS EXPRESSION ;
+INSTRUCCION -> kw_switch token_dollar id { CASES DEFAULT }
+
+CASES -> epsilon
+CASES -> CASE CASES
+
+CASE -> kw_case token_integer { INSTRUCCIONES }
+
+DEFAULT -> epsilon
+DEFAULT -> kw_default { INSTRUCCIONES }
 
 INIT_FOR -> token_integer
 INIT_FOR -> token_dollar id OPT_ARRAY_ACCESS
