@@ -46,28 +46,31 @@ INIT_FOR -> EXPRESSION
 OPT_ARRAY_ACCESS -> ( EXPRESSION )
 OPT_ARRAY_ACCESS -> epsilon
 
-EXPRESSION -> F BINARIO_EXPRESSION_OPT
-F -> UNARIO G
-F -> G
-G -> T
-T -> ( T )
+EXPRESSION -> T E_PRIMA
+E_PRIMA -> BINARIO1 T E_PRIMA
+E_PRIMA -> epsilon
+T -> V T_PRIMA
+T_PRIMA -> BINARIO2 V T_PRIMA
+T_PRIMA -> epsilon
 
-BINARIO_EXPRESSION_OPT -> epsilon
-BINARIO_EXPRESSION_OPT -> BINARIO EXPRESSION
+V -> UNARIO V
+V -> U
 
-BINARIO -> token_mas
-BINARIO -> token_menos
-BINARIO -> token_mul
-BINARIO -> token_div
+U -> ( EXPRESSION )
+U -> token_dollar id
+U -> token_string
+U -> FCALL
+U -> token_integer
+U -> token_double
+
+BINARIO1 -> token_mas
+BINARIO1 -> token_menos
+BINARIO2 -> token_mul
+BINARIO2 -> token_div
 UNARIO -> token_menos
 
 
-T -> id
-T -> token_dollar id
-T -> token_string
-T -> FCALL
-T -> token_integer
-T -> token_double
+
 
 FCALL -> [ id PARAMETROS ]
 

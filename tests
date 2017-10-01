@@ -1,29 +1,32 @@
-proc romain {{a}{b}{c}} {expr {i1}; expr{i2}; return;}
-proc romain {{a}{b}} {expr {i1}; expr{i2};}
+proc romain {{a}{b}{c}} {expr {$i1}; expr{$i2}; return;}
+proc romain {{a}{b}} {expr {$i1}; expr{$i2};}
 proc romain {} {}
 
-if{ro} then{expr{a};}
-if{a}then{expr{a};}elseif{a}then{expr{a};}
-if{a}then{expr{a};}elseif{a}then{expr{a};}elseif{b}then{expr{b};}
-if{a}then{expr{a};}elseif{a}then{expr{a};}elseif{b}then{expr{b};}else{expr{a};}
+if{$ro} then{expr{$a};}
+if{$a}then{expr{$a};}elseif{$a}then{expr{$a};}
+if{$a}then{expr{$a};}elseif{$a}then{expr{$a};}elseif{$b}then{expr{$a};}
+if{$a}then{expr{$a};}elseif{$a}then{expr{$a};}elseif{$b}then{expr{$a};}else{expr{$a};}
 
-while{a}{expr{b};}
+while{$a}{expr{$a};}
 
 expr {[romain {[romain]} {$test2}]};
 expr {[romain]};
 
 
 gets stdin;
-puts a;
+puts $a;
+puts 10;
+puts 2.2;
+puts "string";
 
-set a b;
-set a(b) b;
+set a $b;
+set a($b) $b;
 set a("s") "y";
 set a(0) 10.5;
 
-for {set a 1}{a}{incr a ( 1 )}{}
-for {set a $b}{a}{incr a ( 1 )}{}
-for {set a $b(1)}{a}{incr a ( 1 )}{}
+for {set a 1}{$a}{incr a ( 1 )}{}
+for {set a $b}{$a}{incr a ( 1 )}{}
+for {set a $b(1)}{$a}{incr a ( 1 )}{}
 
 switch $a {
 
@@ -38,4 +41,5 @@ case 2 {set a 1;}
 default {}
 }
 
-expr{b-((a))};
+expr{$b-(($a))};
+expr{(1+(1*2+-----1))};
