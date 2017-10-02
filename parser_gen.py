@@ -133,7 +133,7 @@ if(tokens.get(0).getType().equals(t)){
 tokens.remove(0);
 }else{
 error_sintactico(t);
-System.exit(1);
+System.exit(0);
 }
 }
 
@@ -163,7 +163,7 @@ System.out.print(", ");
 System.out.print("'"+values[i]+"'");
 }
 System.out.print(".");
-System.exit(1);
+System.exit(0);
 }
 
 public void analyze(){
@@ -172,7 +172,7 @@ public void analyze(){
 if(tokens.size()>1)
 {
 System.out.print("there are tokens left to process... fail.");
-System.exit(1);
+System.exit(0);
 }
 System.out.print("El analisis sintactico ha finalizado correctamente.");
 }

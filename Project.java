@@ -179,7 +179,7 @@ class Lexer {
                 return State.IDENTIFIER_END;
             default:
                 System.err.println("Unknown State...");
-                System.exit(1);
+                System.exit(0);
                 return State.INITIAL;
         }
 
@@ -227,7 +227,7 @@ class Lexer {
                     line = startLine;
                 }
                 System.out.println(">>> Error lexico (linea: " + line + ", posicion: " + (col==1 || current == State.INITIAL?col:--col) + ")");
-                System.exit(1);
+                System.exit(0);
             }
 
             if (accept.contains(new_state)) {
@@ -410,7 +410,7 @@ class Token {
 class Main{
     public static final Map<String, String> lut = new HashMap<>();
     static{
-        lut.put("$", "$");
+        lut.put("$", "EOF");
         lut.put("id", "identificador");
         lut.put("kw_array", "array");
         lut.put("kw_break", "break");
