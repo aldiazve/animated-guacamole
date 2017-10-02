@@ -49,6 +49,7 @@ EXP -> kw_expr { EXPRESSION }
 INSTRUCCION -> kw_for { kw_set id INIT_FOR } { EXPRESSION } { kw_incr id OPT_INTEGER } { INSTRUCCIONES }
 OPT_INTEGER -> epsilon
 OPT_INTEGER -> ( token_integer )
+OPT_INTEGER -> token_integer
 INSTRUCCION -> kw_switch VARIABLE { CASES DEFAULT }
 
 CASES -> epsilon
@@ -61,7 +62,7 @@ DEFAULT -> kw_default { INSTRUCCIONES }
 
 INIT_FOR -> token_integer
 INIT_FOR -> token_dollar id OPT_ARRAY_ACCESS
-INIT_FOR -> EXPRESSION
+INIT_FOR -> EXP
 
 OPT_ARRAY_ACCESS -> ( EXPRESSION )
 OPT_ARRAY_ACCESS -> epsilon
