@@ -3,15 +3,17 @@ ROOT -> DECLARACIONES INSTRUCCIONES $
 DECLARACIONES -> DECLARACION DECLARACIONES
 DECLARACIONES -> epsilon
 
-DECLARACION -> kw_proc id { PARAMETROS_DECL } { INSTRUCCIONES RET }
+DECLARACION -> kw_proc id { PARAMETROS_DECL } { INSTRUCCIONES }
 
 PARAMETROS_DECL -> PARAMETRO_DECL PARAMETROS_DECL
 PARAMETROS_DECL -> epsilon
 
 PARAMETRO_DECL -> { id }
 
-RET -> kw_return ;
-RET -> epsilon
+INSTRUCCION -> kw_return OPT_EXPRESSION ;
+OPT_EXPRESSION -> epsilon
+OPT_EXPRESSION -> EXPRESSION
+OPT_EXPRESSION -> EXP
 
 INSTRUCCIONES -> INSTRUCCION INSTRUCCIONES
 INSTRUCCIONES -> epsilon
@@ -23,12 +25,23 @@ ELSEIFS -> kw_elseif IF ELSEIFS
 ELSE -> epsilon
 ELSE -> kw_else { INSTRUCCIONES }
 
+INST_SIN_PYC -> INST_CON_PYC
+INSTRUCCION -> INST_CON_PYC ;
+INST_CON_PYC -> kw_gets kw_stdin
+INST_CON_PYC -> kw_puts EXPRESSION
+INST_CON_PYC -> EXP
+INST_CON_PYC -> kw_break
+INST_CON_PYC -> kw_continue
+INST_CON_PYC -> kw_set id OPT_ARRAY_ACCESS EXPRESSION
+INST_CON_PYC -> [ id PARAMETROS ]
+
 INSTRUCCION -> kw_while { EXPRESSION } { INSTRUCCIONES }
-INSTRUCCION -> kw_gets kw_stdin ;
-INSTRUCCION -> kw_puts EXPRESSION ;
-INSTRUCCION -> kw_expr { EXPRESSION } ;
-INSTRUCCION -> kw_for { kw_set id INIT_FOR } { EXPRESSION } { kw_incr id ( token_integer ) } { INSTRUCCIONES }
-INSTRUCCION -> kw_set id OPT_ARRAY_ACCESS EXPRESSION ;
+
+
+EXP -> kw_expr { EXPRESSION }
+INSTRUCCION -> kw_for { kw_set id INIT_FOR } { EXPRESSION } { kw_incr id OPT_INTEGER } { INSTRUCCIONES }
+OPT_INTEGER -> epsilon
+OPT_INTEGER -> ( token_integer )
 INSTRUCCION -> kw_switch token_dollar id { CASES DEFAULT }
 
 CASES -> epsilon
@@ -46,9 +59,9 @@ INIT_FOR -> EXPRESSION
 OPT_ARRAY_ACCESS -> ( EXPRESSION )
 OPT_ARRAY_ACCESS -> epsilon
 
-EXPRESSION -> T E_PRIMA
-E_PRIMA -> BINARIO1 T E_PRIMA
-E_PRIMA -> epsilon
+EXPRESSION -> T E_BINARIA
+E_BINARIA -> BINARIO1 T E_BINARIA
+E_BINARIA -> epsilon
 T -> V T_PRIMA
 T_PRIMA -> BINARIO2 V T_PRIMA
 T_PRIMA -> epsilon
@@ -59,7 +72,10 @@ V -> U
 U -> ( EXPRESSION )
 U -> token_dollar id
 U -> token_string
-U -> FCALL
+U -> [ CROCHETES ]
+CROCHETES -> id PARAMETROS
+CROCHETES -> INST_SIN_PYC
+
 U -> token_integer
 U -> token_double
 
@@ -67,12 +83,24 @@ BINARIO1 -> token_mas
 BINARIO1 -> token_menos
 BINARIO2 -> token_mul
 BINARIO2 -> token_div
+BINARIO2 -> token_mod
+
+BINARIO2 -> token_menor
+BINARIO2 -> token_menor_igual
+BINARIO2 -> token_mayor_igual
+BINARIO2 -> token_mayor
+BINARIO2 -> token_diff_num
+BINARIO2 -> token_mul
+BINARIO2 -> token_pot
+BINARIO2 -> token_and
+BINARIO2 -> token_or
+BINARIO2 -> token_igual_num
+BINARIO2 -> token_diff_str
+BINARIO2 -> token_igual_str
+
 UNARIO -> token_menos
+UNARIO -> token_not
 
-
-
-
-FCALL -> [ id PARAMETROS ]
 
 PARAMETROS -> epsilon
 PARAMETROS -> PARAMETRO PARAMETROS

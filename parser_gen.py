@@ -131,7 +131,7 @@ System.out.println("\tEmparejar '"+t+"'");
 if(tokens.get(0).getType().equals(t)){
 tokens.remove(0);
 }else{
-System.out.println("Mismatch: received "+tokens.get(0).getType()+", expected "+t+"");
+error_sintactico(t);
 System.exit(1);
 }
 }
