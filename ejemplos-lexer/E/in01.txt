@@ -1,0 +1,3 @@
+set a$ "esto es un erro lexico
+
+puts "esto no se debe imprimir"

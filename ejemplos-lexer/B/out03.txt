@@ -1,0 +1,16 @@
+<id,comentarios,11,1>
+<proc,13,1>
+<id,sum,13,6>
+<token_llave_izq,13,10>
+<token_llave_izq,13,11>
+<id,a,13,12>
+<token_llave_der,13,13>
+<token_llave_izq,13,15>
+<id,b,13,16>
+<token_llave_der,13,17>
+<token_llave_izq,13,19>
+<id,c,13,20>
+<token_llave_der,13,21>
+<token_llave_der,13,22>
+<token_llave_izq,13,24>
+>>> Error lexico (linea: 14, posicion: 5)

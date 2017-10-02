@@ -1,0 +1,41 @@
+<set,2,1>
+<id,age,2,5>
+<token_integer,42,2,9>
+<puts,3,1>
+<token_dollar,3,6>
+<id,age,3,7>
+<set,5,1>
+<id,Age,5,5>
+<token_integer,42,5,9>
+<puts,6,1>
+<token_dollar,6,6>
+<id,Age,6,7>
+<set,8,1>
+<id,AGE,8,5>
+<token_integer,42,8,9>
+<puts,9,1>
+<token_dollar,9,6>
+<id,AGE,9,7>
+<set,11,1>
+<token_string,my age,11,5>
+<token_integer,42,11,14>
+<puts,12,1>
+<token_dollar,12,6>
+<token_llave_izq,12,7>
+<id,my,12,8>
+<id,age,12,11>
+<token_llave_der,12,14>
+<set,14,1>
+<token_string,My AGE,14,5>
+<token_integer,42,14,14>
+<puts,15,1>
+<token_dollar,15,6>
+<token_llave_izq,15,7>
+<id,My,15,8>
+<id,AGE,15,11>
+<token_llave_der,15,14>
+<puts,16,1>
+<token_cor_izq,16,6>
+<set,16,7>
+<token_string,My AGE,16,11>
+<token_cor_der,16,19>

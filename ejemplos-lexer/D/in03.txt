@@ -1,0 +1,11 @@
+#tomado de https://www.tutorialspoint.com/tcl-tk/tcl_strings.htm
+
+proc factorial {number} {
+   if {$number <= 1} {
+      return 1
+   }
+   return [expr $number * [factorial [expr $number - 1]]]
+
+}
+puts [factorial 3]
+puts [factorial 5]

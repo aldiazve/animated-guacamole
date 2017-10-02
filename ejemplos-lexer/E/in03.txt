@@ -1,0 +1,6 @@
+#a continuacion otro error lexico
+
+
+90.00.90900
+
+puts "si se imprime esto tiene mal el analizador"

@@ -1,0 +1,4 @@
+print "Ultimo caso"
+_hola set 10
+
+!== #error lexico

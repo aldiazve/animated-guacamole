@@ -1,0 +1,8 @@
+array size
+
+while{varios ids que no son expresiones expr}{
+
+    existsabc exists abc
+
+    ] 7897.3343 + 0.3242343 % || && || && || && || && || && || &&||&&||&&||&&||&&||&&||&&%/*** [
+}

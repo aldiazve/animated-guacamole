@@ -1,0 +1,14 @@
+#for
+
+for {set ident 3}{$i < 3}{incr i 3}{
+    break;
+    continue;
+}
+
+for {set i 3}{"asdasd" == 2}{incr i}{
+    if{1 < 2} then {}
+}
+
+for {set i 2.3}{1 < 2}{ incr i 2}{ #error
+
+}

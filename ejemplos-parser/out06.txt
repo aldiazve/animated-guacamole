@@ -1,0 +1,1 @@
+<12,12> Error sintactico se encontro: '2.3'; se esperaba: '$', 'expr', 'valor_entero'.

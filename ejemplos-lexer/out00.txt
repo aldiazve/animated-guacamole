@@ -1,0 +1,12 @@
+<set,3,1>
+<puts,4,13>
+<if,6,5>
+<then,8,1>
+<else,10,1>
+<switch,12,1>
+<for,13,5>
+<default,15,29>
+<while,16,21>
+<expr,16,27>
+<array,18,1>
+<exists,20,1>

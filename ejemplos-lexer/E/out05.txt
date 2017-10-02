@@ -1,0 +1,6 @@
+<set,2,1>
+<id,a,2,5>
+<token_menos,2,8>
+<token_integer,13412,2,9>
+<id,jdhusnf21,3,1>
+>>> Error lexico (linea: 3, posicion: 10)

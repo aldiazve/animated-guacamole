@@ -1,0 +1,14 @@
+#in02
+
+"esto es un string"
+
+"palabra"
+
+"#"
+
+";"
+"estos valores se toman como string %^**\##" #comentario
+
+4000
+40.0003
+0.001

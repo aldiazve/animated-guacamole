@@ -1,0 +1,12 @@
+set a 50;
+
+if{ a == 50} then {
+    puts "50";
+}
+else{
+    puts "not 50";
+}
+
+for{set i 0}{ $i < 10} {incr i}{
+    puts "$i";
+}

@@ -1,0 +1,3 @@
+set a  -13412
+1.&23948998
+puts "no imprimir estO"

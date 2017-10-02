@@ -1,0 +1,1 @@
+<15,17> Error sintactico se encontro: 'abcd'; se esperaba: '$', '[', 'expr', 'valor_double', 'valor_entero', 'valor_string'.

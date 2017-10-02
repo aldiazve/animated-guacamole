@@ -1,0 +1,28 @@
+#tomado de https://www.tutorialspoint.com/tcl-tk/tcl_strings.htm
+set languages(0) Tcl
+set languages(1) "C Language"
+for { set index 0 }  { $index < [array size languages] }  { incr index } {
+   puts $languages($index)
+}
+
+set personA(Name) "Dave"
+set personA(Age) 14
+puts  $personA(Name)
+puts  $personA(Age)
+
+
+set s1 "Hello"
+set s2 "World"
+set s3 "World"
+puts [s1 eq s2]
+if {[s2 eq s3] == 0} {
+   puts "String are same.";
+}
+
+if {[ s1 < s2] == -1} {
+   puts "String s1 comes before.";
+}
+
+if {[ s2 > s1] == 1} {
+   puts "String s2 comes after s1.";
+}

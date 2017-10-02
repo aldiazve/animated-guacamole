@@ -1,0 +1,16 @@
+#sub rutinas llamado
+
+proc identificador { {argumento1} {argumento2} {argumento3}}{
+    puts $a;
+    return $a;
+}
+
+[identificador {2} {3} {5}];
+
+[identificador {$id} {$id(2)} {$id([expr{2 + 2}])}];
+
+[identificador {expr{2 + 2} } {expr{"sdfsd"} } {[expr{2 + 2}]}];
+[identificador {[array size a]} {[array exists a]} {[funcion]} {[funcion {$a}]} ];
+
+[identificador {abcd}]
+

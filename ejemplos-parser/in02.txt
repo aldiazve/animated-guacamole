@@ -1,0 +1,9 @@
+#agrupaciones o ejecuciones
+
+[expr{2 + 4}]; #expresiones
+[array exists arreglo]; #array
+[array size arreglo]; #array
+[rutina];
+[rutina {$argumento} {$argumento2} {expr{2 + 2}}]; #rutinas
+[gets stdin]; #ejecutable dentro de agrupacion
+[puts 2]; #no es valido dentro de agrupacion

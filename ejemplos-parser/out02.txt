@@ -1,0 +1,1 @@
+<9,2> Error sintactico se encontro: 'puts'; se esperaba: 'array', 'expr', 'gets', 'identificador'.

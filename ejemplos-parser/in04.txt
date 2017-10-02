@@ -1,0 +1,16 @@
+#input y output
+
+gets stdin;
+
+[gets stdin];
+
+set a [gets stdin];
+
+puts $a;
+
+puts $a(2);
+puts [array size a];
+
+puts [expr{ 2 + 2}];
+
+puts expr{ 2 + 2}; #error

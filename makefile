@@ -1,16 +1,19 @@
-OBJ     = Token.class Lexer.class Main.class
+.PHONY: run
 
+main: Main.class
 
-%.class: %.java
-	javac $?
+SyntacticAnalyzer.java: parser_gen.py gramatica
+	python parser_gen.py < gramatica > SyntacticAnalyzer.java
 
-build: $(OBJ)
+Main.class: Project.java SyntacticAnalyzer.java
+	cat Project.java SyntacticAnalyzer.java > Main.java
+	javac Main.java
 
-run: $(OBJ)
+run: Main.class
 	java Main
 
-tests: $(OBJ)
-# TODO
+tests: Main.class
+	./tests.py
 
 clean:
-	rm -f *.class
+	rm -f *.class Main.java SyntacticAnalyzer.java

@@ -7,10 +7,11 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-public class Project {
+import java.util.Arrays;
 
 
-static class Lexer {
+
+class Lexer {
 
     enum State {
         INITIAL, LINE_BREAK, IDENTIFIER, IDENTIFIER_END, INTEGER, DOUBLE,
@@ -51,6 +52,7 @@ static class Lexer {
         keywords.add("else");
         keywords.add("switch");
         keywords.add("default");
+        keywords.add("case");
         keywords.add("break");
         keywords.add("continue");
         keywords.add("return");
@@ -216,6 +218,7 @@ static class Lexer {
             }
 
             if (new_state == State.LEXICAL_ERROR || new_state == State.STRING_ERROR) {
+                if(Main.DEBUG)
                 for (Token t : tokens) {
                     System.out.println(t);
                 }
@@ -224,7 +227,7 @@ static class Lexer {
                     line = startLine;
                 }
                 System.out.println(">>> Error lexico (linea: " + line + ", posicion: " + (col==1 || current == State.INITIAL?col:--col) + ")");
-                return tokens;
+                System.exit(1);
             }
 
             if (accept.contains(new_state)) {
@@ -283,17 +286,19 @@ static class Lexer {
             }
             current = new_state;
         }
+        if(Main.DEBUG)
         for (Token t : tokens) {
             System.out.println(t);
         }
+        tokens.add(new Token(Token.Type.EOF, "", line, col));
         return tokens;
     }
 }
 
-static class Token {
+class Token {
 
     public enum Type {
-        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR
+        IDENTIFIER, KEYWORD, STRING, INTEGER, DOUBLE, OPERATOR, EOF
     };
     Type type;
     int line;
@@ -339,6 +344,27 @@ static class Token {
         this.lexeme = lexeme;
     }
 
+    public String getType() {
+	switch (type) {
+    case STRING:
+        return "token_string";
+    case EOF:
+        return "$";
+	case INTEGER:
+	    return "token_integer";
+	case DOUBLE:
+	    return "token_double";
+	case IDENTIFIER:
+	    return "id";
+	case OPERATOR:
+	    return operators.get(lexeme);
+	case KEYWORD:
+	    return "kw_"+lexeme;
+	default:
+	    return "ERROR";
+        }
+    }
+
     @Override
     public String toString() {
         String t = "";
@@ -371,11 +397,80 @@ static class Token {
         }
         return "<" + t + l + line + "," + column + ">";
     }
-}
 
-    public static void main(String[] args) throws IOException {
-        Lexer l = new Lexer();
-        l.Tokenize(new PushbackInputStream(System.in));
-
+    public String getPosition(){
+        return "<" + line + "," + column + ">";
+    }
+    public String getLexeme(){
+        return lexeme;
     }
 }
+
+
+class Main{
+    public static final Map<String, String> lut = new HashMap<>();
+    static{
+        lut.put("$", "$");
+        lut.put("id", "identificador");
+        lut.put("kw_array", "array");
+        lut.put("kw_break", "break");
+        lut.put("kw_case", "case");
+        lut.put("kw_continue", "continue");
+        lut.put("kw_default", "default");
+        lut.put("kw_then", "then");
+        lut.put("kw_else", "else");
+        lut.put("kw_elseif", "elseif");
+        lut.put("kw_exists", "exists");
+        lut.put("kw_expr", "expr");
+        lut.put("kw_for", "for");
+        lut.put("kw_gets", "gets");
+        lut.put("kw_if", "if");
+        lut.put("kw_proc", "proc");
+        lut.put("kw_puts", "puts");
+        lut.put("kw_return", "return");
+        lut.put("kw_set", "set");
+        lut.put("kw_size", "size");
+        lut.put("kw_switch", "switch");
+        lut.put("kw_while", "while");
+        lut.put("token_llave_izq","{");
+        lut.put("token_llave_der","}");
+        lut.put("token_dollar","$");
+        lut.put("token_pyc",";");
+        lut.put("token_cor_izq","[");
+        lut.put("token_cor_der","]");
+        lut.put("token_par_izq","(");
+        lut.put("token_par_der",")");
+        lut.put("token_mas","+");
+        lut.put("token_menos","-");
+        lut.put("token_div","/");
+        lut.put("token_mod","%");
+        lut.put("token_menor","<");
+        lut.put("token_menor_igual","<=");
+        lut.put("token_mayor_igual",">=");
+        lut.put("token_mayor",">");
+        lut.put("token_not","!");
+        lut.put("token_diff_num","!=");
+        lut.put("token_mul","*");
+        lut.put("token_pot","**");
+        lut.put("token_and","&&");
+        lut.put("token_or","||");
+        lut.put("token_igual_num","==");
+        lut.put("token_diff_str","ne");
+        lut.put("token_igual_str","eq");
+        lut.put("token_double", "valor_double");
+        lut.put("token_integer", "valor_entero");
+        lut.put("token_string", "valor_string");
+
+    }
+
+    public static final Boolean DEBUG = false;
+    public static void main(String[] args) throws IOException {
+	Lexer l = new Lexer();
+	List<Token> tokens = l.Tokenize(new PushbackInputStream(System.in));
+    if(Main.DEBUG)
+    System.out.println("\n\n\nSintactico:\n");
+	SyntacticAnalyzer sa = new SyntacticAnalyzer(tokens);
+	sa.analyze();
+    }
+}
+

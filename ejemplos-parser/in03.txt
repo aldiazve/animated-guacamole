@@ -1,0 +1,15 @@
+#declaracion y uso de variables
+
+set variable 3;
+set variable1 3.4;
+set variable2 "Asdasd";
+set variable2 $variable;
+set arreglo(2) 1;
+set arreglo(3) [expr{2 + 2}];
+set arreglo(4) $arreglo(2);
+set arreglo(4) $arreglo;
+set arreglo([expr{2 + 2}]) $arreglo;
+set variable3 [sum];
+set arreglo(expr{2 + 2}); #error sintactico
+
+set variable ; #error

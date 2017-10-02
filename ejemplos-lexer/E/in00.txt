@@ -1,0 +1,11 @@
+set a 10;
+
+for{ set i 0}{ $i < 10} {incr i}{
+    puts $i;
+}
+
+set variable 90.0;
+
+#dividir variables
+
+puts [$variable/15] , "esto no debe imprimirse";

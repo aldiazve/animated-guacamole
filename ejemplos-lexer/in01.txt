@@ -1,0 +1,20 @@
+#in01
+
+} {                 ( )
+        $       #comentario
+        ;
+
+  ne
+
+  eq
+
+  * **
+  ***
+  ==
+  !=
+  !===
+  ==!
+  !
+  !== #por principio de token mas largo se toma primero token diff y luego '=' no puede ser tokenizado
+
+

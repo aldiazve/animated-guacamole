@@ -1,0 +1,1 @@
+<42,10> Error sintactico se encontro: '"asdasd"'; se esperaba: 'valor_entero'.
