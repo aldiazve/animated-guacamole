@@ -126,7 +126,7 @@ private String token(){
 return tokens.get(0).getType();
 }
 private void emparejar(String t){
-if(Project.DEBUG)
+if(Main.DEBUG)
 System.out.println("\tEmparejar '"+t+"'");
 
 if(tokens.get(0).getType().equals(t)){
@@ -163,7 +163,7 @@ System.out.println("El analisis sintactico ha finalizado correctamente.");
 """)
 for r in rules:
 	print("void " +r+"(){")
-	print("if(Project.DEBUG)\nSystem.out.println(\"Rule: "+r+" token: \"+token());")
+	print("if(Main.DEBUG)\nSystem.out.println(\"Rule: "+r+" token: \"+token());")
 	preds = set()
 	for rule in rules[r]:
 		a = (r, rule)

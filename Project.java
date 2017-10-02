@@ -217,7 +217,7 @@ class Lexer {
             }
 
             if (new_state == State.LEXICAL_ERROR || new_state == State.STRING_ERROR) {
-                if(Project.DEBUG)
+                if(Main.DEBUG)
                 for (Token t : tokens) {
                     System.out.println(t);
                 }
@@ -285,7 +285,7 @@ class Lexer {
             }
             current = new_state;
         }
-        if(Project.DEBUG)
+        if(Main.DEBUG)
         for (Token t : tokens) {
             System.out.println(t);
         }
@@ -403,12 +403,12 @@ class Token {
 }
 
 
-class Project{
+class Main{
     public static final Boolean DEBUG = false;
     public static void main(String[] args) throws IOException {
 	Lexer l = new Lexer();
 	List<Token> tokens = l.Tokenize(new PushbackInputStream(System.in));
-    if(Project.DEBUG)
+    if(Main.DEBUG)
     System.out.println("\n\n\nSintactico:\n");
 	SyntacticAnalyzer sa = new SyntacticAnalyzer(tokens);
 	sa.analyze();

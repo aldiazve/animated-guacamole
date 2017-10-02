@@ -1,22 +1,16 @@
-#OBJ     = Project.class
-
-
-#%.class: %.java
-#	javac $?
-
-#build: $(OBJ)
-
-#run: $(OBJ)
-#	java Project
-
-#tests: $(OBJ)
-## TODO
-
-
 .PHONY: run
-run:
+
+main: Main.class
+
+SyntacticAnalyzer.java: parser_gen.py gramatica
 	python parser_gen.py < gramatica > SyntacticAnalyzer.java
-	cat Project.java SyntacticAnalyzer.java > run/Project.java
-	cd run && javac Project.java && java Project; cd ..
+
+Main.class: Project.java SyntacticAnalyzer.java
+	cat Project.java SyntacticAnalyzer.java > Main.java
+	javac Main.java
+
+run: Main.class
+	java Main
+
 clean:
-	rm -f *.class
+	rm -f *.class Main.java SyntacticAnalyzer.java
