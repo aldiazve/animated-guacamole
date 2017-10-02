@@ -12,5 +12,8 @@ Main.class: Project.java SyntacticAnalyzer.java
 run: Main.class
 	java Main
 
+tests: Main.class
+	./tests.py
+
 clean:
 	rm -f *.class Main.java SyntacticAnalyzer.java
