@@ -138,14 +138,31 @@ System.exit(1);
 }
 
 void error_sintactico(String... values){
+String encontrado = Main.lut.get(token());
+switch(encontrado){
+	case "valor_double":
+	case "valor_entero":
+	case "identificador":
+	encontrado = tokens.get(0).getLexeme();
+	break;
+	case "valor_string":
+	encontrado = '"'+tokens.get(0).getLexeme()+'"';
+	break;
+	default:
+	break;
+}
+System.out.print(tokens.get(0).getPosition()+" Error sintactico se encontro: '"+encontrado+"'; se esperaba: ");
 
-System.out.print(tokens.get(0).getPosition()+" Error sintactico se encontro: '"+token()+"'; se esperaba: ");
+for(int i = 0; i<values.length;i++){
+	values[i] = Main.lut.get(values[i]);
+}
+Arrays.sort(values);
 for(int i = 0; i<values.length;i++){
 if(i!=0)
 System.out.print(", ");
 System.out.print("'"+values[i]+"'");
 }
-System.out.println(".");
+System.out.print(".");
 System.exit(1);
 }
 
@@ -154,10 +171,10 @@ public void analyze(){
 
 if(tokens.size()>1)
 {
-System.out.println("there are tokens left to process... fail.");
+System.out.print("there are tokens left to process... fail.");
 System.exit(1);
 }
-System.out.println("El analisis sintactico ha finalizado correctamente.");
+System.out.print("El analisis sintactico ha finalizado correctamente.");
 }
 
 """)

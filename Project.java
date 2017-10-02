@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 
@@ -400,10 +401,68 @@ class Token {
     public String getPosition(){
         return "<" + line + "," + column + ">";
     }
+    public String getLexeme(){
+        return lexeme;
+    }
 }
 
 
 class Main{
+    public static final Map<String, String> lut = new HashMap<>();
+    static{
+        lut.put("$", "$");
+        lut.put("id", "identificador");
+        lut.put("kw_array", "array");
+        lut.put("kw_break", "break");
+        lut.put("kw_case", "case");
+        lut.put("kw_continue", "continue");
+        lut.put("kw_default", "default");
+        lut.put("kw_then", "then");
+        lut.put("kw_else", "else");
+        lut.put("kw_elseif", "elseif");
+        lut.put("kw_exists", "exists");
+        lut.put("kw_expr", "expr");
+        lut.put("kw_for", "for");
+        lut.put("kw_gets", "gets");
+        lut.put("kw_if", "if");
+        lut.put("kw_proc", "proc");
+        lut.put("kw_puts", "puts");
+        lut.put("kw_return", "return");
+        lut.put("kw_set", "set");
+        lut.put("kw_size", "size");
+        lut.put("kw_switch", "switch");
+        lut.put("kw_while", "while");
+        lut.put("token_llave_izq","{");
+        lut.put("token_llave_der","}");
+        lut.put("token_dollar","$");
+        lut.put("token_pyc",";");
+        lut.put("token_cor_izq","[");
+        lut.put("token_cor_der","]");
+        lut.put("token_par_izq","(");
+        lut.put("token_par_der",")");
+        lut.put("token_mas","+");
+        lut.put("token_menos","-");
+        lut.put("token_div","/");
+        lut.put("token_mod","%");
+        lut.put("token_menor","<");
+        lut.put("token_menor_igual","<=");
+        lut.put("token_mayor_igual",">=");
+        lut.put("token_mayor",">");
+        lut.put("token_not","!");
+        lut.put("token_diff_num","!=");
+        lut.put("token_mul","*");
+        lut.put("token_pot","**");
+        lut.put("token_and","&&");
+        lut.put("token_or","||");
+        lut.put("token_igual_num","==");
+        lut.put("token_diff_str","ne");
+        lut.put("token_igual_str","eq");
+        lut.put("token_double", "valor_double");
+        lut.put("token_integer", "valor_entero");
+        lut.put("token_string", "valor_string");
+
+    }
+
     public static final Boolean DEBUG = false;
     public static void main(String[] args) throws IOException {
 	Lexer l = new Lexer();
