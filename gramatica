@@ -13,7 +13,13 @@ PARAMETRO_DECL -> { id }
 INSTRUCCION -> kw_return OPT_EXPRESSION ;
 INSTRUCCION -> kw_break ;
 INSTRUCCION -> kw_continue ;
-INSTRUCCION -> kw_puts EXPRESSION ;
+INSTRUCCION -> kw_puts PUTS ;
+PUTS -> VARIABLE
+PUTS -> token_integer
+PUTS -> token_double
+PUTS -> token_string
+PUTS -> FCALL_CROCHETES
+
 INSTRUCCION -> kw_set id OPT_ARRAY_ACCESS EXPRESSION ;
 
 OPT_EXPRESSION -> epsilon
